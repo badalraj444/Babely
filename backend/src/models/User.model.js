@@ -50,8 +50,6 @@ const userSchema = new mongoose.Schema({
 },{timestamps:true}
 );
 
-const User  = mongoose.model("User",userSchema);
-
 //pre hook to encrypt password before saving
 userSchema.pre("save", async function(next) {
     if(!this.isModified("password")){
@@ -65,5 +63,13 @@ userSchema.pre("save", async function(next) {
          next(error);
     }
 })
+
+userSchema.methods.matchPassword = async function (enteredPassword){
+    const isPaaswordCorrect = await bcrypt.compare(enteredPassword,this.password);
+    return isPaaswordCorrect;
+};
+const User  = mongoose.model("User",userSchema);
+
+
 
 export default User;

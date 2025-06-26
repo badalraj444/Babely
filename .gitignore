@@ -70,3 +70,5 @@ dist/
 build/
 # remove when client is ready
 client/ 
+
+local.txt
