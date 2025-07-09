@@ -68,7 +68,8 @@ storybook-static/
 # Build output
 dist/
 build/
-# remove when client is ready
-client/ 
-
+# Temporary files
+tmp/
 local.txt
+
+.gitignore
