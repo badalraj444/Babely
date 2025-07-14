@@ -116,7 +116,4 @@ const SignUpPage = () => {
 export default SignUpPage
 
 // to do: make screen size responsive
-// to do: add signup functionality
-// to do: add validation for form inputs
-// to do: add error handling for signup
 

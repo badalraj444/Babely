@@ -108,7 +108,7 @@ export async function onboard(req, res) {
         }
         const updatedUser = await User.findByIdAndUpdate(userId, {
             ...req.body,
-            isOnboarde: true,
+            isOnboarded: true,
         }, { new: true });
         if (!updatedUser) return res.status(404).json({ message: "User not found" });
         //TODO: update the user info in stream
