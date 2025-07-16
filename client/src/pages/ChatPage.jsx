@@ -113,3 +113,4 @@ const ChatPage = () => {
   );
 };
 export default ChatPage;
+//to do : chatPage.jsx: implement notifications for new messages 
