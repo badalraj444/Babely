@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
-import ThemeSelector from "./ThemeSelector";
 import useLogout from "../hooks/useLogout";
 
 const Navbar = () => {
@@ -27,7 +26,7 @@ const Navbar = () => {
               <Link to="/" className="flex items-center gap-2.5">
                 <ShipWheelIcon className="size-9 text-primary" />
                 <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
-                  Streamify
+                  {import.meta.env.VITE_APP_NAME}
                 </span>
               </Link>
             </div>
@@ -41,8 +40,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* TODO */}
-          <ThemeSelector />
 
           <div className="avatar">
             <div className="w-9 rounded-full">

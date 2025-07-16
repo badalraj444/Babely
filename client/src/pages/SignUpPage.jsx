@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ShipWheelIcon, UserIcon } from 'lucide-react';
+import { MessageCircle} from 'lucide-react';
 import { Link } from 'react-router';
-import { axiosInstance } from '../lib/axios';
 import { signup } from '../lib/api';
 
 const SignUpPage = () => {
@@ -26,16 +25,16 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8" data-theme="forest">
+    <div className="h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8" >
       <div className='border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden'>
         {/* signup form- left side */}
         <div className='w-full lg:w-1/2 p-4 sm:p-8 flex flex-col'>
           {/* logo */}
           <div className="mb-4 flex items-center justify-start gap-2">
-            <UserIcon className="w-8 h-8 text-primary" />
+            <MessageCircle className="w-8 h-8 text-primary" />
 
             <span className='text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider'>
-              Chit-Chat
+              {import.meta.env.VITE_APP_NAME}
             </span>
           </div>
           {/* error message */}
@@ -103,11 +102,19 @@ const SignUpPage = () => {
             </form>
           </div>
         </div>
-        <div className='border border-primary/25 w-full lg:w-1/2 p-4 sm:p-8 flex flex-col items-center justify-center bg-base-200'>
-          <img src="/signup.png" alt="Sign Up Illustration" className='w-3/4 mb-6' />
-          <h1 className='text-3xl font-bold mb-2'>Welcome to Chit-Chat!</h1>
-          <p className='text-lg text-gray-600'>Your journey to seamless communication starts here.</p>
-          <p className='text-sm text-gray-500 mt-2'>Sign up to create your account and start chatting with friends and family.</p>
+        <div className="hidden lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
+          <div className="max-w-md p-8">
+            <div className="relative aspect-square max-w-sm mx-auto">
+              <img src="/videoCall.png" alt="Language connection illustration" className="w-full h-full" />
+            </div>
+
+            <div className="text-center space-y-3 mt-6">
+              <h2 className="text-xl font-semibold">Connect with language partners worldwide</h2>
+              <p className="opacity-70">
+                Practice conversations, make friends, and improve your language skills together
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

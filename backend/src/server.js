@@ -6,7 +6,7 @@ import {connectDB} from "./lib/db.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import chatRoutes from "./routes/chat.route.js";
-import path from "path";
+
 
 const app = express();
 
