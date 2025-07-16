@@ -43,11 +43,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    friends:{
+    friends: [
+        {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"User",
-    }
-},{timestamps:true}
+        ref: "User",
+    },
+],
+},
+ { timestamps: true }
 );
 
 //pre hook to encrypt password before saving

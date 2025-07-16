@@ -5,6 +5,8 @@ import userRoutes from "./routes/user.route.js"
 import {connectDB} from "./lib/db.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import chatRoutes from "./routes/chat.route.js";
+import path from "path";
 
 const app = express();
 
@@ -19,7 +21,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth",authRoutes);
-app.use("/api/user",userRoutes);
+app.use("/api/users",userRoutes);
+app.use("/api/chat", chatRoutes);
 app.listen(PORT,()=>{
     console.log(`server listening on port ${PORT}`);
     connectDB();
