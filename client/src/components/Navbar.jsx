@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, LogOutIcon, ShipWheelIcon, MessageCircle } from "lucide-react";
+import { BellIcon, LogOutIcon, MessageCircle, Search } from "lucide-react";
 import useLogout from "../hooks/useLogout";
 import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
@@ -30,6 +30,19 @@ const Navbar = () => {
             </div>
           )}
 
+          {/* Search Bar for users by username */}
+          <div className="hidden md:flex items-center gap-2 px-4">
+            <Search className="w-5 h-5 text-base-content opacity-70" />
+            <input
+              type="text"
+              placeholder="Search language partners..."
+              className="input input-bordered input-sm w-48 focus:outline-none"
+            />
+          </div>
+
+          {/* add static image(s) for feel of app , connecting people with languages */}
+
+
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <Link to={"/notifications"}>
               <button className="btn btn-ghost btn-circle">
@@ -37,8 +50,8 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-          
-          <ThemeSelector/>
+
+          <ThemeSelector />
 
           <div className="avatar">
             <div className="w-9 rounded-full  hover:opacity-70"
