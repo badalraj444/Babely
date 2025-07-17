@@ -63,3 +63,11 @@ export async function getStreamToken() {
   const response = await axiosInstance.get("/chat/token");
   return response.data;
 }
+
+export async function deleteAccount(){
+  const response = await axiosInstance.get("/auth/deleteUser"); 
+  //todo later: delete profilepic from cloudinary. will need a parameter to be supplied from mutation fun for user data or just profile pic
+  //todo imp: alert a confiramtion and warning to do so, and require password once again
+  console.log(response.data);
+  return response.data;
+}

@@ -20,7 +20,7 @@ export const upsertStreamUser = async (userData)=>{
         console.log("Error upserting Stream user: ",error);
     }
 };
-//todo later
+
 export const generateStreamToken = (userId)=>{
     try {
         const userIdStr = userId.toString();
@@ -29,3 +29,13 @@ export const generateStreamToken = (userId)=>{
         console.log("Error generating Stream token: ",error);
     }
 };
+
+export const deleteStreamUser = async (userId)=>{
+    try {
+        const userIdStr = userId.toString();
+        await streamClient.deleteUser(userIdStr);
+        console.log("Stream user deleted successfully!");
+    } catch (error) {
+        console.log("Error deleting Stream user: ",error);
+    }
+}

@@ -30,7 +30,7 @@ export async function getMyFriends(req, res) {
   try {
     const user = await User.findById(req.user.id)
       .select("friends")
-      .populate("friends", "fullName profilePic nativeLanguage learningLanguage");
+      .populate("friends", "fullName profilePic nativeLanguage learningLanguage gender");
 
     res.status(200).json(user.friends);
   } catch (error) {
@@ -98,7 +98,7 @@ export async function acceptFriendRequest(req, res) {
       return res.status(403).json({ message: "You are not authorized to accept this request" });
     }
 
-    friendRequest.status = "accepted";
+    friendRequest.status = "accepted"; //todo: should rather delete whole data once accpeted. sure?
     await friendRequest.save();
 
     // add each user to the other's friends array

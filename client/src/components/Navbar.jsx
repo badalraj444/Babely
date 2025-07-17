@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
+import { BellIcon, LogOutIcon, ShipWheelIcon, MessageCircle } from "lucide-react";
 import useLogout from "../hooks/useLogout";
+import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -21,7 +22,7 @@ const Navbar = () => {
           {isChatPage && (
             <div className="pl-5">
               <Link to="/" className="flex items-center gap-2.5">
-                <ShipWheelIcon className="size-9 text-primary" />
+                <MessageCircle className="size-9 text-primary" />
                 <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
                   {import.meta.env.VITE_APP_NAME}
                 </span>
@@ -36,10 +37,11 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-
+          
+          <ThemeSelector/>
 
           <div className="avatar">
-            <div className="w-9 rounded-full cursor-pointer ring ring-transparent hover:ring-primary transition duration-300"
+            <div className="w-9 rounded-full  hover:opacity-70"
               onClick={() => setIsModalOpen(true)}>
               <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" rel="noreferrer" />
             </div>
@@ -59,7 +61,7 @@ const Navbar = () => {
           <img
             src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")}
             alt="User Avatar Large"
-            className="max-w-full max-h-full rounded-lg border-4 border-primary"
+            className="max-w-full max-h-full rounded-lg "
             onClick={(e) => e.stopPropagation()} // prevents closing on image click
           />
         </div>
