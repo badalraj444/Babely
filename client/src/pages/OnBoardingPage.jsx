@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
 import { LoaderIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon } from "lucide-react";
 import { LANGUAGES } from "../constants";
+import { uploadImage } from "../lib/utils";
 
 const OnboardingPage = () => {
   const { authUser } = useAuthUser();
@@ -36,14 +37,16 @@ const OnboardingPage = () => {
 
     onboardingMutation(formState);
   };
+  
+  const handleProfilePicUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-  const handleRandomAvatar = () => {
-    const idx = Math.floor(Math.random() * 100) + 1; // 1-100 included
-    const randomAvatar = `https://avatar.iran.liara.run/public/${idx}.png`;
-
-    setFormState({ ...formState, profilePic: randomAvatar });
-    toast.success("Random profile picture generated!");
+    const url = await uploadImage(file);
+    setFormState({ ...formState, profilePic: url });
+    toast.success("Profile picture uploaded successfully!");
   };
+
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4" data-theme="forest">
@@ -69,12 +72,14 @@ const OnboardingPage = () => {
                 )}
               </div>
 
-              {/* Generate Random Avatar BTN */}
+              {/* Upload from pc */}
               <div className="flex items-center gap-2">
-                <button type="button" onClick={handleRandomAvatar} className="btn btn-accent">
-                  <ShuffleIcon className="size-4 mr-2" />
-                  Generate Random Avatar
-                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePicUpload}
+                  className="file-input file-input-bordered w-full"
+                />
               </div>
             </div>
 

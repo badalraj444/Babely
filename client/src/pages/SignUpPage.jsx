@@ -7,6 +7,7 @@ import { signup } from '../lib/api';
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
     fullName: "",
+    gender: "",
     email: "",
     password: "",
   });
@@ -62,6 +63,21 @@ const SignUpPage = () => {
                     value={signupData.fullName}
                     onChange={(e) => setSignupData({ ...signupData, fullName: e.target.value })}
                   />
+                </div>
+                <div>
+                  <label className='label'>
+                    <span className='label-text'>He/She</span>
+                  </label>
+                  <select
+                    className='select select-bordered w-full'
+                    value={signupData.gender}
+                    onChange={(e) => setSignupData({ ...signupData, gender: e.target.value })}
+                  >
+                    <option value=''>Select your gender</option>
+                    <option value='male'>He</option>
+                    <option value='female'>She</option>
+                    <option value='other'>Others</option>
+                  </select>
                 </div>
                 <div className='form-control'>
                   <label className='label'>

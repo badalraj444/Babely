@@ -6,10 +6,16 @@ export async function getRecommendedUsers(req, res) {
     const currentUserId = req.user.id;
     const currentUser = req.user;
 
+    const incomingReqs = await FriendRequest.find({
+      recipient: currentUserId,
+      status: "pending",
+    }).populate("sender");
+
     const recommendedUsers = await User.find({
       $and: [
         { _id: { $ne: currentUserId } }, //exclude current user
         { _id: { $nin: currentUser.friends } }, // exclude current user's friends
+        { _id: { $nin: incomingReqs.map((req) => req.sender._id) } }, // exclude users who have sent friend requests
         { isOnboarded: true },
       ],
     });
@@ -62,9 +68,7 @@ export async function sendFriendRequest(req, res) {
     });
 
     if (existingRequest) {
-      return res
-        .status(400)
-        .json({ message: "A friend request already exists between you and this user" });
+      return res.status(400).json({ message: "A friend request already exists between you and this user" });
     }
 
     const friendRequest = await FriendRequest.create({
