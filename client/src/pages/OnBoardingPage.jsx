@@ -10,7 +10,8 @@ import { uploadImage } from "../lib/utils";
 const OnboardingPage = () => {
   const { authUser } = useAuthUser();
   const queryClient = useQueryClient();
-
+  
+   const [isuploadingprofilepic, setIsUploadingProfilePic] = useState(false);
   const [formState, setFormState] = useState({
     fullName: authUser?.fullName || "",
     bio: authUser?.bio || "",
@@ -19,7 +20,7 @@ const OnboardingPage = () => {
     location: authUser?.location || "",
     profilePic: authUser?.profilePic || "",
   });
-
+  const gender = authUser?.gender || "male";
   const { mutate: onboardingMutation, isPending } = useMutation({
     mutationFn: completeOnboarding,
     onSuccess: () => {
@@ -41,9 +42,10 @@ const OnboardingPage = () => {
   const handleProfilePicUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
+    setIsUploadingProfilePic(true);
     const url = await uploadImage(file);
     setFormState({ ...formState, profilePic: url });
+    setIsUploadingProfilePic(false);
     toast.success("Profile picture uploaded successfully!");
   };
 
@@ -59,17 +61,11 @@ const OnboardingPage = () => {
             <div className="flex flex-col items-center justify-center space-y-4">
               {/* IMAGE PREVIEW */}
               <div className="size-32 rounded-full bg-base-300 overflow-hidden">
-                {formState.profilePic ? (
                   <img
-                    src={formState.profilePic}
+                    src={formState.profilePic || (gender === "male" ? "/man.png" : "/woman.png")}
                     alt="Profile Preview"
                     className="w-full h-full object-cover"
                   />
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <CameraIcon className="size-12 text-base-content opacity-40" />
-                  </div>
-                )}
               </div>
 
               {/* Upload from pc */}
@@ -78,7 +74,8 @@ const OnboardingPage = () => {
                   type="file"
                   accept="image/*"
                   onChange={handleProfilePicUpload}
-                  className="file-input file-input-bordered w-full"
+                  className=" file-input file-input-bordered w-full disabled:opacity-50"
+                  disabled={isuploadingprofilepic}
                 />
               </div>
             </div>

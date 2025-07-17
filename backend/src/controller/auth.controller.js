@@ -22,13 +22,13 @@ export async function signup(req, res) {
         }
 
         // const idx = Math.floor(Math.random()*100) + 1;
-        const randomAvatar = `https://xsgames.co/randomusers/avatar.php?g=${gender}`;
+        // const randomAvatar = `https://xsgames.co/randomusers/avatar.php?g=${gender}`;
         const newUser = await User.create({
             email,
             fullName,
             password,
             gender,
-            profilePic: randomAvatar,
+            // profilePic: randomAvatar, leaving it empty for now so that it defaults to "", it will be statically rendered in the frontend
 
         });
 

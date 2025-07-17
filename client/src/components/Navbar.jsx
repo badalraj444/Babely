@@ -2,17 +2,14 @@ import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
 import useLogout from "../hooks/useLogout";
+import { useState } from "react";
 
 const Navbar = () => {
   const { authUser } = useAuthUser();
   const location = useLocation();
   const isChatPage = location.pathname?.startsWith("/chat");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const queryClient = useQueryClient();
-  // const { mutate: logoutMutation } = useMutation({
-  //   mutationFn: logout,
-  //   onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
-  // });
 
   const { logoutMutation } = useLogout();
 
@@ -42,8 +39,9 @@ const Navbar = () => {
 
 
           <div className="avatar">
-            <div className="w-9 rounded-full">
-              <img src={authUser?.profilePic} alt="User Avatar" rel="noreferrer" />
+            <div className="w-9 rounded-full cursor-pointer ring ring-transparent hover:ring-primary transition duration-300"
+              onClick={() => setIsModalOpen(true)}>
+              <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" rel="noreferrer" />
             </div>
           </div>
 
@@ -53,6 +51,20 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <img
+            src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")}
+            alt="User Avatar Large"
+            className="max-w-full max-h-full rounded-lg border-4 border-primary"
+            onClick={(e) => e.stopPropagation()} // prevents closing on image click
+          />
+        </div>
+      )}
+
     </nav>
   );
 };
