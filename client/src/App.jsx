@@ -7,7 +7,7 @@ import NotificationsPage from "./pages/NotificationsPage.jsx";
 import CallPage from "./pages/CallPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnBoardingPage.jsx";
-import FriendsPage from "./pages/friendsPage.jsx";
+import FriendsPage from "./pages/AllChats.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 
 import { Toaster } from "react-hot-toast";
@@ -17,6 +17,7 @@ import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
 import ProfilePage from "./pages/profilePage.jsx";
+import AllChats from "./pages/AllChats.jsx";
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser();
@@ -103,10 +104,10 @@ const App = () => {
             )
           }
         />
-        <Route path="/friends" element={isAuthenticated ? (
+        <Route path="/allchats" element={isAuthenticated ? (
           isOnboarded ? (
             <Layout showSidebar={true}>
-              <FriendsPage />
+              <AllChats />
             </Layout>
           ) :
             (
