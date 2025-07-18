@@ -1,6 +1,5 @@
 import  { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { MessageCircle} from 'lucide-react';
 import { Link } from 'react-router';
 import { signup } from '../lib/api';
 
@@ -32,7 +31,11 @@ const SignUpPage = () => {
         <div className='w-full lg:w-1/2 p-4 sm:p-8 flex flex-col'>
           {/* logo */}
           <div className="mb-4 flex items-center justify-start gap-2">
-            <MessageCircle className="w-8 h-8 text-primary" />
+            <img
+            src="/chat.png"
+            alt="App Logo"
+            className="size-9"
+          />
 
             <span className='text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider'>
               {import.meta.env.VITE_APP_NAME}

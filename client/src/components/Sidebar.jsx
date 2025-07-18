@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, HomeIcon,MessageCircle, UsersIcon, Settings } from "lucide-react";
+import { BellIcon, HomeIcon, UsersIcon, Settings } from "lucide-react";
 
 const Sidebar = () => {
   const { authUser } = useAuthUser();
@@ -11,7 +11,11 @@ const Sidebar = () => {
     <aside className="w-64 bg-base-200 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">
       <div className="p-5 border-b border-base-300">
         <Link to="/" className="flex items-center gap-2.5">
-          <MessageCircle className="size-9 text-primary" />
+          <img
+            src="/chat.png"
+            alt="App Logo"
+            className="size-9"
+          />
           <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
             {import.meta.env.VITE_APP_NAME}
           </span>

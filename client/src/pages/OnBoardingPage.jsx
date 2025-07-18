@@ -3,15 +3,15 @@ import useAuthUser from "../hooks/useAuthUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
-import { LoaderIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon } from "lucide-react";
+import { LoaderIcon, MapPinIcon, } from "lucide-react";
 import { LANGUAGES } from "../constants";
 import { uploadImage } from "../lib/utils";
 
 const OnboardingPage = () => {
   const { authUser } = useAuthUser();
   const queryClient = useQueryClient();
-  
-   const [isuploadingprofilepic, setIsUploadingProfilePic] = useState(false);
+
+  const [isuploadingprofilepic, setIsUploadingProfilePic] = useState(false);
   const [formState, setFormState] = useState({
     fullName: authUser?.fullName || "",
     bio: authUser?.bio || "",
@@ -38,7 +38,7 @@ const OnboardingPage = () => {
 
     onboardingMutation(formState);
   };
-  
+
   const handleProfilePicUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -61,11 +61,11 @@ const OnboardingPage = () => {
             <div className="flex flex-col items-center justify-center space-y-4">
               {/* IMAGE PREVIEW */}
               <div className="size-32 rounded-full bg-base-300 overflow-hidden">
-                  <img
-                    src={formState.profilePic || (gender === "male" ? "/man.png" : "/woman.png")}
-                    alt="Profile Preview"
-                    className="w-full h-full object-cover"
-                  />
+                <img
+                  src={formState.profilePic || (gender === "male" ? "/man.png" : "/woman.png")}
+                  alt="Profile Preview"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Upload from pc */}
@@ -175,7 +175,11 @@ const OnboardingPage = () => {
             <button className="btn btn-primary w-full" disabled={isPending} type="submit">
               {!isPending ? (
                 <>
-                  <ShipWheelIcon className="size-5 mr-2" />
+                  <img
+                    src="/chat.png"
+                    alt="App Logo"
+                    className="size-9"
+                  />
                   Complete Onboarding
                 </>
               ) : (
