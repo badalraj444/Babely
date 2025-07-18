@@ -4,6 +4,7 @@ import { Settings, UserRoundPen, KeyRound, Trash } from "lucide-react"
 import { toast } from "react-hot-toast";
 import useAuthUser from '../hooks/useAuthUser';
 import { deleteAccount } from '../lib/api';
+import { Link } from "react-router";
 const SettingsPage = () => {
     const { authUser } = useAuthUser(); //will be used to find profilepic url to delete from cloudinary
 
@@ -30,12 +31,14 @@ const SettingsPage = () => {
             </div>
             <hr className="my-4" />
             {/* Add your settings components here */}
-            <div className="flex items mt-10 group">
+
+            <Link to="/edit-profile" className="flex items mt-10 group">
                 <UserRoundPen className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />
-                <button className="ml-2 text-2xl transition-colors duration-200 hover:text-green-300">
+                <span className="ml-2 text-2xl transition-colors duration-200 hover:text-green-300">
                     Profile
-                </button>
-            </div>
+                </span>
+            </Link>
+
 
             <div className="flex items mt-10 group">
                 <KeyRound className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />

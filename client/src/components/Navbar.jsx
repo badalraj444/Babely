@@ -75,7 +75,7 @@ const Navbar = () => {
           <ThemeSelector />
 
           <div className="avatar">
-            <div className="w-9 rounded-full  hover:opacity-70"
+            <div className="w-9 rounded-full  hover:opacity-70 "
               onClick={() => setIsModalOpen(true)}>
               <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" rel="noreferrer" />
             </div>
@@ -95,7 +95,7 @@ const Navbar = () => {
           <img
             src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")}
             alt="User Avatar Large"
-            className="max-w-full max-h-full rounded-lg "
+            className="h-96 w-96 rounded-full "
             onClick={(e) => e.stopPropagation()} // prevents closing on image click
           />
         </div>
