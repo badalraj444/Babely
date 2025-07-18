@@ -103,6 +103,7 @@ const HomePage = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendedUsers.map((user) => {
+                const [isModalOpen, setIsModalOpen] = useState(false);
                 const hasRequestBeenSent = outgoingRequestsIds.has(user._id);
 
                 return (
@@ -112,9 +113,9 @@ const HomePage = () => {
                   >
                     <div className="card-body p-5 space-y-4">
                       <div className="flex items-center gap-3">
-                        <div className="avatar size-16 rounded-full">
-
-                          <img className="rounded-full" src={user.profilePic || (user.gender === "male" ? "/man.png" : "/woman.png") || "man.png"} alt={user.fullName} />
+                        <div className="avatar size-16 rounded-full"
+                          onClick={() => setIsModalOpen(true)}>
+                          <img className="rounded-full hover:scale-110" src={user.profilePic || (user.gender === "male" ? "/man.png" : "/woman.png") || "man.png"} alt={user.fullName} />
                         </div>
 
                         <div>
@@ -163,6 +164,19 @@ const HomePage = () => {
                       </button>
 
                     </div>
+                    {isModalOpen && (
+                      <div
+                        className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                        onClick={() => setIsModalOpen(false)}
+                      >
+                        <img
+                          src={user?.profilePic || (user?.gender === "male" ? "/man.png" : "/woman.png")}
+                          alt="friend-avatar"
+                          className="h-96 w-96 rounded-full "
+                          onClick={(e) => e.stopPropagation()} // prevents closing on image click
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}

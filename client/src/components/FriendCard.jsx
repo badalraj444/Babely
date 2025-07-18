@@ -1,14 +1,17 @@
 import { Link } from "react-router";
+import { useState } from "react";
 import { LANGUAGE_TO_FLAG } from "../constants";
 
 const FriendCard = ({ friend }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="card bg-base-200 hover:shadow-md transition-shadow">
       <div className="card-body p-4">
         {/* USER INFO */}
         <div className="flex items-center gap-3 mb-3">
-          <div className="avatar size-12">
-            <img className="rounded-full" src={friend.profilePic || (friend.gender == "male" ? "/man.png" : "/woman.png")} alt={friend.fullName} />
+          <div className="avatar size-12 hover: grid-flow-row hover:grid-flow-dense"
+            onClick={() => setIsModalOpen(true)}>
+            <img className="rounded-full hover:scale-110" src={friend.profilePic || (friend.gender == "male" ? "/man.png" : "/woman.png")} alt={friend.fullName} />
           </div>
           <h3 className="font-semibold truncate">{friend.fullName}</h3>
         </div>
@@ -28,6 +31,20 @@ const FriendCard = ({ friend }) => {
           Message
         </Link>
       </div>
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <img
+            src={friend?.profilePic || (friend?.gender === "male" ? "/man.png" : "/woman.png")}
+            alt="friend-avatar"
+            className="h-96 w-96 rounded-full "
+            onClick={(e) => e.stopPropagation()} // prevents closing on image click
+          />
+        </div>
+      )}
+
     </div>
   );
 };

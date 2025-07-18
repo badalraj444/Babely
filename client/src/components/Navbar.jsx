@@ -75,7 +75,7 @@ const Navbar = () => {
           <ThemeSelector />
 
           <div className="avatar">
-            <div className="w-9 rounded-full  hover:opacity-70 "
+            <div className="w-9 rounded-full  hover:scale-110 "
               onClick={() => setIsModalOpen(true)}>
               <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" rel="noreferrer" />
             </div>

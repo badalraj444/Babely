@@ -34,15 +34,15 @@ const SettingsPage = () => {
 
             <Link to="/edit-profile" className="flex items mt-10 group">
                 <UserRoundPen className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />
-                <span className="ml-2 text-2xl transition-colors duration-200 hover:text-green-300">
-                    Profile
+                <span className="ml-2  transition-colors duration-200 hover:text-green-300">
+                    Edit Profile
                 </span>
             </Link>
 
 
             <div className="flex items mt-10 group">
                 <KeyRound className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />
-                <button className="ml-2 text-2xl transition-colors duration-200 hover:text-violet-600 ">
+                <button className="ml-2  transition-colors duration-200 hover:text-violet-600 ">
                     Change password
                 </button>
             </div>
@@ -50,7 +50,7 @@ const SettingsPage = () => {
             <div className="flex items mt-10 group">
                 <Trash className="size-8 text-primary group-hover:scale-110 transition-transform duration-200" />
                 <button
-                    className="ml-2 text-2xl transition-all duration-200 hover:text-red-800 hover:opacity-40"
+                    className="ml-2  transition-all duration-200 hover:text-red-800 hover:opacity-40"
                     onClick={handleDelete}
                     disabled={isPending}
                 >
