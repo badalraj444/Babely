@@ -32,16 +32,33 @@ const Navbar = () => {
 
           {/* Search Bar for users by username */}
           <div className="hidden md:flex items-center gap-2 px-4">
-            <Search className="w-5 h-5 text-base-content opacity-70" />
+            <Search className="w-7 h-7 text-base-content opacity-70" />
             <input
               type="text"
-              placeholder="Search language partners..."
+              placeholder="Search users..."
               className="input input-bordered input-sm w-48 focus:outline-none"
             />
           </div>
 
           {/* add static image(s) for feel of app , connecting people with languages */}
+          
+          <div className="hidden md:flex items-center gap-3 sm:gap-4 ml-auto">
+            <img src="/japanese.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/english.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/hindi.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/spanish.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/french.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/german.png" alt="Connecting People" className="w-8 h-8" />
+            
+            <img src="/chinese.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/portuguese.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/korean.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/russian.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/arabic.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/italian.png" alt="Connecting People" className="w-8 h-8" />
+            <img src="/turkish.png" alt="Connecting People" className="w-8 h-8" />
 
+          </div>
 
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <Link to={"/notifications"}>
