@@ -36,11 +36,11 @@ const Navbar = () => {
 
           {/* Search Bar for users by username */}
           <div className="hidden md:flex items-center gap-2 px-4">
-            <Search className="w-7 h-7 text-base-content opacity-70" />
+            <Search className="w-7 h-7 text-base-content opacity-70 " />
             <input
               type="text"
               placeholder="Search users..."
-              className="input input-bordered input-sm w-48 focus:outline-none"
+              className="input input-bordered input-sm w-48 focus:outline-none hover:scale-105"
             />
           </div>
 
