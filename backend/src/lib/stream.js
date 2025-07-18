@@ -32,6 +32,7 @@ export const generateStreamToken = (userId)=>{
 
 export const deleteStreamUser = async (userId)=>{
     try {
+        //todo! also delete channels for chats with this user
         const userIdStr = userId.toString();
         await streamClient.deleteUser(userIdStr);
         console.log("Stream user deleted successfully!");

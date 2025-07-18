@@ -11,7 +11,7 @@ const FriendCard = ({ friend }) => {
         <div className="flex items-center gap-3 mb-3">
           <div className="avatar size-12 hover: grid-flow-row hover:grid-flow-dense"
             onClick={() => setIsModalOpen(true)}>
-            <img className="rounded-full hover:scale-110" src={friend.profilePic || (friend.gender == "male" ? "/man.png" : "/woman.png")} alt={friend.fullName} />
+            <img className="rounded-full hover:scale-110" src={friend.profilePic || "/user.png"} alt={friend.fullName} />
           </div>
           <h3 className="font-semibold truncate">{friend.fullName}</h3>
         </div>

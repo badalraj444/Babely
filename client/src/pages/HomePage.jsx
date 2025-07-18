@@ -113,7 +113,7 @@ const HomePage = () => {
                     <div className="card-body p-5 space-y-4">
                       <div className="flex items-center gap-3">
                         <div className="avatar size-16 rounded-full">
-                          <img className="rounded-full hover:scale-110" src={user.profilePic || (user.gender === "male" ? "/man.png" : "/woman.png") || "man.png"} alt={user.fullName} />
+                          <img className="rounded-full" src={user.profilePic || "/user.png"} alt={user.fullName} />
                         </div>
 
                         <div>

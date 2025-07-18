@@ -46,7 +46,7 @@ const Navbar = () => {
 
           {/* add static image(s) for feel of app , connecting people with languages */}
           
-          <div className="hidden md:flex items-center gap-3 sm:gap-4 ml-auto">
+          <div className="hidden md:flex items-center gap-5 sm:gap-4 ml-auto">
             <img src="/japanese.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/english.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/hindi.png" alt="Connecting People" className="w-8 h-8" />
@@ -77,7 +77,7 @@ const Navbar = () => {
           <div className="avatar">
             <div className="w-9 rounded-full  hover:scale-110 "
               onClick={() => setIsModalOpen(true)}>
-              <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" rel="noreferrer" />
+              <img src={authUser?.profilePic || "/user.png"} alt="User Avatar" rel="noreferrer" />
             </div>
           </div>
 

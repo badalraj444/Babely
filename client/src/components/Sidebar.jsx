@@ -69,7 +69,7 @@ const Sidebar = () => {
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="w-10 rounded-full">
-              <img src={authUser?.profilePic || (authUser?.gender === "male" ? "/man.png" : "/woman.png")} alt="User Avatar" />
+              <img src={authUser?.profilePic || "/user.png"} alt="User Avatar" />
             </div>
           </div>
           <div className="flex-1">

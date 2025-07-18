@@ -36,7 +36,7 @@ const ChatPage = () => {
     enabled: !!authUser, // this will run only when authUser is available
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     const initChat = async () => {
       if (!tokenData?.token || !authUser) return;
 
@@ -45,21 +45,25 @@ const ChatPage = () => {
 
         const client = StreamChat.getInstance(STREAM_API_KEY);
 
-        await client.connectUser(
-          {
-            id: authUser._id,
-            name: authUser.fullName,
-            image: authUser.profilePic,
-          },
-          tokenData.token
-        );
+        if (client.userID && client.userID === authUser._id) {
+          console.log("User already connected to StreamChat");
+        } else {
+          // Always disconnect before connecting a new user
+          if (client.userID) {
+            await client.disconnectUser();
+          }
 
-        //
+          await client.connectUser(
+            {
+              id: authUser._id,
+              name: authUser.fullName,
+              image: authUser.profilePic,
+            },
+            tokenData.token
+          );
+        }
+
         const channelId = [authUser._id, targetUserId].sort().join("-");
-
-        // you and me
-        // if i start the chat => channelId: [myId, yourId]
-        // if you start the chat => channelId: [yourId, myId]  => [myId,yourId]
 
         const currChannel = client.channel("messaging", channelId, {
           members: [authUser._id, targetUserId],
@@ -79,6 +83,7 @@ const ChatPage = () => {
 
     initChat();
   }, [tokenData, authUser, targetUserId]);
+
 
   const handleVideoCall = () => {
     if (channel) {

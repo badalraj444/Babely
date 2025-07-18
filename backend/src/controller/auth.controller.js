@@ -162,7 +162,7 @@ export async function deleteUser(req, res) {
         message: "User deleted from DB, but failed to delete Stream user",
       });
     }
-
+    //todo! find and delete chat channels with this userid
     // Step 5: Clear cookie and return success
     res.clearCookie("jwt");
     return res

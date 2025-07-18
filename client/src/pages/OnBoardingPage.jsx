@@ -62,7 +62,7 @@ const OnboardingPage = () => {
               {/* IMAGE PREVIEW */}
               <div className="size-32 rounded-full bg-base-300 overflow-hidden">
                 <img
-                  src={formState.profilePic || (gender === "male" ? "/man.png" : "/woman.png")}
+                  src={formState.profilePic || "/user.png"}
                   alt="Profile Preview"
                   className="w-full h-full object-cover"
                 />
