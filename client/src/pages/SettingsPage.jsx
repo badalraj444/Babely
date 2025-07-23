@@ -1,12 +1,12 @@
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation,  useQueryClient } from "@tanstack/react-query";
 import { Settings, UserRoundPen, KeyRound, Trash } from "lucide-react"
 import { toast } from "react-hot-toast";
-import useAuthUser from '../hooks/useAuthUser';
+
 import { deleteAccount } from '../lib/api';
 import { Link } from "react-router";
 const SettingsPage = () => {
-    const { authUser } = useAuthUser(); //will be used to find profilepic url to delete from cloudinary
+
 
     const queryClient = useQueryClient();
     const { mutate: mutateDelete, isPending, error: deleteError } = useMutation({
@@ -61,7 +61,7 @@ const SettingsPage = () => {
             {/* error message */}
             {deleteError && (
                 <div className="alert alert-error mb-4">
-                    <span>{error.response.data.message}</span>
+                    <span>{deleteError.response.data.message}</span>
                 </div>)}
         </div>
     )

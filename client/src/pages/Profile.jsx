@@ -1,10 +1,10 @@
-import { useState } from "react";
-import useAuthUser from "../hooks/useAuthUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { completeOnboarding } from "../lib/api";
 import { LoaderIcon, MapPinIcon, } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { LANGUAGES } from "../constants";
+import useAuthUser from "../hooks/useAuthUser";
+import { completeOnboarding } from "../lib/api";
 import { uploadImage } from "../lib/utils";
 
 const ProfilePage = () => {
@@ -20,7 +20,7 @@ const ProfilePage = () => {
     location: authUser?.location || "",
     profilePic: authUser?.profilePic || "",
   });
-  const gender = authUser?.gender || "male";
+
   const { mutate: onboardingMutation, isPending } = useMutation({
     mutationFn: completeOnboarding,
     onSuccess: () => {
