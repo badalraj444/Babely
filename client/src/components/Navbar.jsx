@@ -1,11 +1,23 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, LogOutIcon,  Search } from "lucide-react";
+import { BellIcon, LogOutIcon, Search } from "lucide-react";
 import useLogout from "../hooks/useLogout";
 import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import {  getFriendRequests } from "../lib/api";
 
 const Navbar = () => {
+
+  const { data: friendRequests, isLoading } = useQuery({
+    queryKey: ["friendRequests"],
+    queryFn: getFriendRequests,
+     refetchInterval: 5000, // every 5 seconds
+  });
+  
+
+  const x = friendRequests?.incomingReqs.length || 0;
+  const y = friendRequests?.acceptedReqs.length || 0;
   const { authUser } = useAuthUser();
   const location = useLocation();
   const isChatPage = location.pathname?.startsWith("/chat");
@@ -23,10 +35,10 @@ const Navbar = () => {
             <div className="pl-5">
               <Link to="/" className="flex items-center gap-2.5">
                 <img
-            src="/chat.png"
-            alt="App Logo"
-            className="size-9"
-          />
+                  src="/chat.png"
+                  alt="App Logo"
+                  className="size-9"
+                />
                 <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
                   {import.meta.env.VITE_APP_NAME}
                 </span>
@@ -45,7 +57,7 @@ const Navbar = () => {
           </div>
 
           {/* add static image(s) for feel of app , connecting people with languages */}
-          
+
           <div className="hidden md:flex items-center gap-5 sm:gap-4 ml-auto">
             <img src="/japanese.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/english.png" alt="Connecting People" className="w-8 h-8" />
@@ -53,7 +65,7 @@ const Navbar = () => {
             <img src="/spanish.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/french.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/german.png" alt="Connecting People" className="w-8 h-8" />
-            
+
             <img src="/chinese.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/portuguese.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/korean.png" alt="Connecting People" className="w-8 h-8" />
@@ -65,11 +77,17 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
-            <Link to={"/notifications"}>
-              <button className="btn btn-ghost btn-circle">
-                <BellIcon className="h-6 w-6 text-base-content opacity-70" />
-              </button>
+            <Link to="/notifications">
+              <div className="indicator">
+                <button className="btn btn-ghost btn-circle">
+                  <BellIcon className="h-6 w-6 text-base-content opacity-70" />
+                </button>
+                {!isLoading && (x + y > 0) && (
+                  <span className="badge badge-primary ml-2 -translate-x-8 translate-y-0">{x+y}</span>
+                )}
+              </div>
             </Link>
+
           </div>
 
           <ThemeSelector />
