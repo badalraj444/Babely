@@ -7,7 +7,7 @@ router.post("/signup",signup);
 router.post("/login",login);
 router.post("/logout",logout);
 router.post("/onboarding",protectRoute, onboard) 
-router.get("/deleteUser",protectRoute,deleteUser); //not sure if it should be get method or something else
+router.delete("/deleteUser",protectRoute,deleteUser);
 
 router.get("/me",protectRoute,(req,res)=>{
     res.status(200).json({success:true,
