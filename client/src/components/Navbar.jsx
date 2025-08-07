@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon, Search } from "lucide-react";
 import useLogout from "../hooks/useLogout";
@@ -20,32 +20,17 @@ const Navbar = () => {
   const x = friendRequests?.incomingReqs.length || 0;
   const y = friendRequests?.acceptedReqs.length || 0;
   const { authUser } = useAuthUser();
-  // const location = useLocation();
-  // const isChatPage = location.pathname?.startsWith("/chat");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   const { logoutMutation } = useLogout();
 
   return (
-    <nav className="bg-base-200 border-b border-base-300 sticky top-0 z-30 h-16 flex items-center">
+    <nav className="bg-base-200 border-b border-base-300 sticky top-0 z-30 h-20 flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full">
-          {/* LOGO - ONLY IN THE CHAT PAGE */}
-          {/* {isChatPage && (
-            <div className="pl-5">
-              <Link to="/" className="flex items-center gap-2.5">
-                <img
-                  src="/chat.png"
-                  alt="App Logo"
-                  className="size-9"
-                />
-                <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">
-                  {import.meta.env.VITE_APP_NAME}
-                </span>
-              </Link>
-            </div>
-          )} */}
+         
 
           {/* Search Bar for users by username */}
           <SearchUsers/>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Search } from "lucide-react";
 import { searchUsersByUsername } from "../lib/api"; // create this in your API file
 import { Link } from "react-router";
 
@@ -39,10 +38,11 @@ const SearchUsers = () => {
   return (
     <div className="relative" ref={inputRef}>
       <div className="flex items-center gap-2">
-        <Search className="w-5 h-5 text-base-content opacity-70" />
+        <img src="/search.png" alt="search" sizes="10" className="w-10 h-10 text-base-content opacity-70"/>
+
         <input
           type="text"
-          placeholder="Search users..."
+          placeholder="users/language..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setShowResults(true)}
