@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { StreamChat } from "stream-chat";
 import useAuthUser from "../hooks/useAuthUser";
 import { getStreamToken } from "../lib/api";
-import { BellIcon, HomeIcon, UsersIcon, Settings } from "lucide-react";
+import { HomeIcon, UsersIcon, Settings, LogOutIcon } from "lucide-react";
+import useLogout from "../hooks/useLogout";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
 
@@ -15,13 +16,14 @@ const Sidebar = () => {
 
   const [totalUnread, setTotalUnread] = useState(0);
   const [chatClient, setChatClient] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: tokenData } = useQuery({
     queryKey: ["streamToken"],
     queryFn: getStreamToken,
     enabled: !!authUser,
   });
-
+  const { logoutMutation } = useLogout();
   useEffect(() => {
     const initStreamChat = async () => {
       if (!authUser || !tokenData?.token) return;
@@ -72,7 +74,8 @@ const Sidebar = () => {
   }, [authUser, tokenData]);
 
   return (
-    <aside className="w-64 bg-base-200 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">
+<>
+    <aside className="w-64 bg-base-200 border-r border-base-300 hidden [@media(min-width:1300px)]:flex flex-col h-screen sticky top-0">
       <div className="p-5 ">
         <Link to="/" className="flex items-center gap-2.5">
           <img src="/chat.png" alt="App Logo" className="size-9" />
@@ -97,7 +100,7 @@ const Sidebar = () => {
           className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case relative ${currentPath === "/friends" ? "btn-active" : ""
             }`}
         >
-           <UsersIcon className="size-5 text-base-content opacity-70" />
+          <UsersIcon className="size-5 text-base-content opacity-70" />
           <div className="indicator">
             <span>Chats</span>
             {totalUnread > 0 && (
@@ -109,14 +112,6 @@ const Sidebar = () => {
 
         </Link>
 
-        {/* <Link
-          to="/notifications"
-          className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${currentPath === "/notifications" ? "btn-active" : ""
-            }`}
-        >
-          <BellIcon className="size-5 text-base-content opacity-70" />
-          <span>Notifications</span>
-        </Link> */}
 
         <Link
           to="/settings"
@@ -126,14 +121,31 @@ const Sidebar = () => {
           <Settings className="size-5 text-base-content opacity-70" />
           <span>Settings</span>
         </Link>
+        {/* Logout button */}
+        <button
+  onClick={logoutMutation}
+  className="btn btn-ghost justify-start w-full gap-3 px-3 normal-case hover:btn-active"
+>
+  <LogOutIcon className="size-5 text-base-content opacity-70" />
+  <span>Log out</span>
+</button>
+
+
       </nav>
 
       {/* USER PROFILE SECTION */}
       <div className="p-4 border-t border-base-300 mt-auto">
         <div className="flex items-center gap-3">
           <div className="avatar">
-            <div className="w-10 rounded-full">
-              <img src={authUser?.profilePic || "/user.png"} alt="User Avatar" />
+<div
+              className="w-9 rounded-full hover:scale-110"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <img
+                src={authUser?.profilePic || "/user.png"}
+                alt="User Avatar"
+                rel="noreferrer"
+              />
             </div>
           </div>
           <div className="flex-1">
@@ -146,6 +158,20 @@ const Sidebar = () => {
         </div>
       </div>
     </aside>
+    {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <img
+            src={authUser?.profilePic || "/user.png"}
+            alt="User Avatar Large"
+            className="h-96 w-96 rounded-full "
+            onClick={(e) => e.stopPropagation()} // prevents closing on image click
+          />
+        </div>
+      )}
+</>
   );
 };
 
