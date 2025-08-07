@@ -2,11 +2,12 @@ import { Link } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon, Search } from "lucide-react";
 import useLogout from "../hooks/useLogout";
-import ThemeSelector from "./ThemeSelector";
+import ThemeSwitch from "./ThemeSwitch";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {  getFriendRequests } from "../lib/api";
 import SearchUsers from "./SearchUsers";
+import NavIcon from "./NavIcon";
 
 const Navbar = () => {
 
@@ -30,29 +31,10 @@ const Navbar = () => {
     <nav className="bg-base-200 border-b border-base-300 sticky top-0 z-30 h-20 flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full">
-         
-
           {/* Search Bar for users by username */}
           <SearchUsers/>
-
           {/* add static image(s) for feel of app , connecting people with languages */}
-
-          <div className="hidden md:flex items-center gap-5 sm:gap-4 ml-auto">
-            <img src="/japanese.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/english.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/hindi.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/spanish.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/french.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/german.png" alt="Connecting People" className="w-8 h-8" />
-
-            <img src="/chinese.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/portuguese.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/korean.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/russian.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/arabic.png" alt="Connecting People" className="w-8 h-8" />
-
-          </div>
-
+         <NavIcon/>
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <Link to="/notifications">
               <div className="indicator">
@@ -64,11 +46,8 @@ const Navbar = () => {
                 )}
               </div>
             </Link>
-
           </div>
-
-          <ThemeSelector />
-
+          <ThemeSwitch />
           <div className="avatar">
             <div className="w-9 rounded-full  hover:scale-110 "
               onClick={() => setIsModalOpen(true)}>
