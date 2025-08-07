@@ -42,7 +42,7 @@ const SearchUsers = () => {
 
         <input
           type="text"
-          placeholder="users/language..."
+          placeholder="search users/language..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setShowResults(true)}
