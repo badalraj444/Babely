@@ -37,7 +37,7 @@ const Navbar = () => {
           <NavIcon />
 
           {/* Notification bell - visible on all screens */}
-          <div className="flex items-center  gap-2 sm:gap-4 ml-auto sm:block translate-x-2">
+          <div className="flex items-center  gap-2 sm:gap-4 ml-auto sm:block -translate-x-5">
             <Link to="/notifications">
               <div className="indicator">
                 <button className="btn btn-ghost btn-circle">

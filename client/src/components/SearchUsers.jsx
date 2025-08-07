@@ -63,7 +63,7 @@ const SearchUsers = () => {
         <img
           src="/search.png"
           alt="search"
-          className="w-8 h-8 sm:w-10 sm:h-10 text-base-content opacity-70"
+          className="w-8 h-8 sm:w-10 sm:h-10 text-base-content opacity-70 hidden sm:block"
         />
         <input
           type="text"
