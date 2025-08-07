@@ -2,33 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-.str-chat__channel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to bottom, #c9e8c9, #b7e7bb);
-  height: 100%;
+/* ===== Light Chat Theme ===== */
+.light-chat-theme {
+  /* Chat Container */
+  .str-chat__channel {
+    background: #f3f4f6;
+  }
+
+  .str-chat__container {
+    background-color: #ffffff;
+    border: 2px solid #d1d5db;
+  }
+
+  .str-chat__list {
+    background-color: #ffffff !important;
+    border-top: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+  }
+
+  .str-chat__message-input {
+    background-color: #f9fafb;
+    border-top: 2px solid #d1d5db;
+  }
+
+  .str-chat__channel-header {
+    background-color: #f9fafb;
+    color: #1f2937;
+    border-bottom: 2px solid #d1d5db;
+  }
+
+  /* ... more as needed */
 }
 
-.str-chat__container {
-  max-width: 1200px;
-  width: 100%;
-  height: 80% !important;
-  margin: 0 auto !important;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+/* ===== Dark (Forest) Chat Theme ===== */
+.dark-chat-theme {
+  .str-chat__channel {
+    background: linear-gradient(to bottom, #1a2e22, #122518);
+  }
+
+  .str-chat__container {
+    background-color: #1a1e1b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .str-chat__list {
+    background-color: #151616 !important;
+  }
+
+  .str-chat__message-input {
+    background-color: #19251e;
+    border-top: 1px solid #34d399;
+  }
+
+  .str-chat__channel-header {
+    background-color: #1f2922;
+    color: #d1fae5;
+    border-bottom: 1px solid #34d399;
+  }
+
+  /* ... more as needed */
 }
 
-.str-chat__list {
-  background-color: #ffffff;
-  padding: 12px;
-}
-
-.str-chat__list-notifications {
-  display: none;
-}
-
-.str-chat__message-input {
-  border-top: 1px solid #ddd;
-}

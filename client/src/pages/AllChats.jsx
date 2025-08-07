@@ -116,7 +116,7 @@ const AllChats = () => {
                 <Link
                   key={channel.id}
                   to={`/chat/${otherUser.id}`}
-                  className="flex items-center justify-between bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow transition"
+                  className="flex items-center justify-between p-3 rounded-lg shadow transition"
                 >
                   <div className="flex items-center gap-3">
                     <img
