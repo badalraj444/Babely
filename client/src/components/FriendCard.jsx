@@ -5,7 +5,7 @@ import { LANGUAGE_TO_FLAG } from "../constants";
 const FriendCard = ({ friend }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="card bg-base-200 hover:shadow-md transition-shadow">
+    <div className="card bg-base-200 hover:shadow-md transition-shadow max-w-sm">
       <div className="card-body p-4">
         {/* USER INFO */}
         <div className="flex items-center gap-3 mb-3">

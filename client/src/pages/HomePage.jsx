@@ -106,7 +106,7 @@ const HomePage = () => {
                     key={user._id}
                     className="card bg-base-200 hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="card-body p-5 space-y-4">
+                    <div className="card-body p-2 space-y-2 max-w-sm" >
                       <div className="flex items-center gap-3">
                         <div className="avatar size-16 rounded-full">
                           <img className="rounded-full" src={user.profilePic || "/user.png"} alt={user.fullName} />

@@ -59,25 +59,25 @@ const SearchUsers = () => {
 
   return (
     <div className="relative" ref={inputRef}>
-      <div className="flex items-center gap-2 mr-5">
+      <div className="flex items-center gap-2">
         <img
-    src="/search.png"
-    alt="search"
-    className="w-8 h-8 sm:w-10 sm:h-10 text-base-content opacity-70"
-  />
-  <input
-    type="text"
-    placeholder="Search..."
-    value={query}
-    onChange={(e) => setQuery(e.target.value)}
-    onFocus={() => setShowResults(true)}
-    className="input input-bordered input-sm w-32 sm:w-48 focus:outline-none hover:scale-105"
-    style={{ transition: "box-shadow 0.2s" }}
-    onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #000000")}
-    onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
-  />
-  
-</div>
+          src="/search.png"
+          alt="search"
+          className="w-8 h-8 sm:w-10 sm:h-10 text-base-content opacity-70"
+        />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setShowResults(true)}
+          className="input input-bordered input-sm w-32 sm:w-48 focus:outline-none hover:scale-105"
+          style={{ transition: "box-shadow 0.2s" }}
+          onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #000000")}
+          onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "")}
+        />
+
+      </div>
 
 
       {/* Dropdown result list */}
