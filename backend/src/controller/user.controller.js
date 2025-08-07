@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import FriendRequest from "../models/FriendRequest.js";
 
+
 export async function getRecommendedUsers(req, res) {
   try {
     const currentUserId = req.user.id;
@@ -147,6 +148,61 @@ export async function getOutgoingFriendReqs(req, res) {
     res.status(200).json(outgoingRequests);
   } catch (error) {
     console.log("Error in getOutgoingFriendReqs controller", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+
+
+export async function searchUsers(req, res) {
+  try {
+    const currentUserId = req.user.id;
+    const { query } = req.query;
+
+    if (!query || query.trim() === "") {
+      return res.status(400).json({ message: "Query parameter is required" });
+    }
+
+    const regex = new RegExp(query, "i"); // case-insensitive regex
+
+    // Fetch current user's friends
+    const currentUser = await User.findById(currentUserId).select("friends");
+
+    // Pending incoming requests
+    const incomingReqs = await FriendRequest.find({
+      recipient: currentUserId,
+      status: "pending"
+    }).select("sender");
+
+    // Pending outgoing requests
+    const outgoingReqs = await FriendRequest.find({
+      sender: currentUserId,
+      status: "pending"
+    }).select("recipient");
+
+    // Build exclusion list
+    const excludeIds = new Set([
+      currentUserId.toString(),
+      ...currentUser.friends.map(id => id.toString()),
+      ...incomingReqs.map(req => req.sender.toString()),
+      ...outgoingReqs.map(req => req.recipient.toString()),
+    ]);
+
+    // Main search
+    const users = await User.find({
+      _id: { $nin: Array.from(excludeIds) },
+      isOnboarded: true,
+      $or: [
+        { username: regex },
+        { fullName: regex },
+        { nativeLanguage: regex },
+        { learningLanguage: regex },
+      ]
+    }).select("_id fullName profilePic nativeLanguage learningLanguage");
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error in searchUsers controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

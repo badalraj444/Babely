@@ -76,3 +76,11 @@ export async function deleteAccount(password) {
   console.log(response.data);
   return response.data;
 }
+
+export async function searchUsersByUsername(query) {
+  const response = await axiosInstance.get("/users/search", {
+    params: { query }, // This uses query param: ?query=username
+  });
+  return response.data;
+}
+

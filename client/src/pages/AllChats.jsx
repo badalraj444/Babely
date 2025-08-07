@@ -65,92 +65,27 @@ const AllChats = () => {
         setChatClient(client);
         setChannels(result);
 
-        client.on("message.new", (event) => {
+        client.on("message.new", () => {
           setChannels((prev) => [...prev]); // trigger re-render
         });
 
       } catch (error) {
         console.error("Error initializing chat client:", error);
-        toast.error("Could not load chats.");
+        toast.error("Could not load chats. Retrying...");
       } finally {
         setLoading(false);
       }
     };
 
+    let client;
     initChat();
 
     return () => {
-      chatClient?.disconnectUser();
+      if (client) {
+        client.disconnectUser();
+      }
     };
   }, [authUser, tokenData]);
-
-  // useEffect(() => {
-  //   let client;
-
-  //   const initChat = async () => {
-  //     if (!authUser || !tokenData?.token) return;
-
-  //     try {
-  //       client = StreamChat.getInstance(STREAM_API_KEY);
-
-  //       await client.connectUser(
-  //         {
-  //           id: authUser._id,
-  //           name: authUser.fullName,
-  //           image: authUser.profilePic,
-  //         },
-  //         tokenData.token
-  //       );
-
-  //       const filters = {
-  //         type: "messaging",
-  //         members: { $in: [authUser._id] },
-  //       };
-
-  //       const sort = [{ last_message_at: -1 }];
-
-  //       const fetchChannels = async () => {
-  //         const result = await client.queryChannels(filters, sort, {
-  //           watch: true,
-  //           state: true,
-  //         });
-  //         setChannels(result);
-  //       };
-
-  //       await fetchChannels();
-  //       setChatClient(client);
-
-  //       // Update when new message in existing channel
-  //       client.on("message.new", () => {
-  //         setChannels((prev) => [...prev]); // simple rerender
-  //       });
-
-  //       // Handle new channel created from first-time message
-  //       client.on("notification.message_new", async () => {
-  //         console.log("New message in new channel received");
-  //         await fetchChannels();
-  //       });
-
-  //     } catch (error) {
-  //       console.error("Error initializing chat client:", error);
-  //       toast.error("Could not load chats.");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   initChat();
-
-  //   return () => {
-  //     if (client) {
-  //       client.disconnectUser();
-  //       client.off("message.new");
-  //       client.off("notification.message_new");
-  //     }
-  //   };
-  // }, [authUser, tokenData]);
-
-
 
 
   if (loading) return <ChatLoader />;

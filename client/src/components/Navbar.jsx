@@ -6,6 +6,7 @@ import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {  getFriendRequests } from "../lib/api";
+import SearchUsers from "./SearchUsers";
 
 const Navbar = () => {
 
@@ -19,8 +20,8 @@ const Navbar = () => {
   const x = friendRequests?.incomingReqs.length || 0;
   const y = friendRequests?.acceptedReqs.length || 0;
   const { authUser } = useAuthUser();
-  const location = useLocation();
-  const isChatPage = location.pathname?.startsWith("/chat");
+  // const location = useLocation();
+  // const isChatPage = location.pathname?.startsWith("/chat");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -31,7 +32,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full">
           {/* LOGO - ONLY IN THE CHAT PAGE */}
-          {isChatPage && (
+          {/* {isChatPage && (
             <div className="pl-5">
               <Link to="/" className="flex items-center gap-2.5">
                 <img
@@ -44,17 +45,10 @@ const Navbar = () => {
                 </span>
               </Link>
             </div>
-          )}
+          )} */}
 
           {/* Search Bar for users by username */}
-          <div className="hidden md:flex items-center gap-2 px-4">
-            <Search className="w-7 h-7 text-base-content opacity-70 " />
-            <input
-              type="text"
-              placeholder="Search users..."
-              className="input input-bordered input-sm w-48 focus:outline-none hover:scale-105"
-            />
-          </div>
+          <SearchUsers/>
 
           {/* add static image(s) for feel of app , connecting people with languages */}
 
@@ -71,8 +65,6 @@ const Navbar = () => {
             <img src="/korean.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/russian.png" alt="Connecting People" className="w-8 h-8" />
             <img src="/arabic.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/italian.png" alt="Connecting People" className="w-8 h-8" />
-            <img src="/turkish.png" alt="Connecting People" className="w-8 h-8" />
 
           </div>
 
