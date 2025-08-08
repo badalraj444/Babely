@@ -103,7 +103,7 @@ const SearchUsers = () => {
                   alt={user.fullName}
                   className="w-8 h-8 rounded-full"
                 />
-                <span className="text-sm font-medium">{user.fullName}</span>
+                <span className="text-sm text-secondary font-medium">{user.fullName}</span>
               </div>
             ))
           )}

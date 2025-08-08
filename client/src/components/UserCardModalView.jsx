@@ -12,7 +12,7 @@ const UserCardModalView = ({ user, hasRequestBeenSent, onSendRequest, isPending 
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg">{user.fullName}</h3>
+            <h3 className="font-semibold text-secondary text-lg">{user.fullName}</h3>
             {user.location && (
               <div className="flex items-center text-xs opacity-70 mt-1">
                 <MapPinIcon className="size-3 mr-1" />
@@ -24,13 +24,13 @@ const UserCardModalView = ({ user, hasRequestBeenSent, onSendRequest, isPending 
 
         {/* Languages */}
         <div className="flex flex-wrap gap-1.5">
-          <span className="badge badge-secondary">
+          <span className="badge badge-outline badge-secondary">
             {getLanguageFlag(user.nativeLanguage)}
-            Native: {capitialize(user.nativeLanguage)}
+            {capitialize(user.nativeLanguage)}
           </span>
           <span className="badge badge-outline">
             {getLanguageFlag(user.learningLanguage)}
-            Learning: {capitialize(user.learningLanguage)}
+            {capitialize(user.learningLanguage)}
           </span>
         </div>
 
@@ -38,7 +38,7 @@ const UserCardModalView = ({ user, hasRequestBeenSent, onSendRequest, isPending 
 
         {/* Friend Request Button */}
         <button
-          className={`btn w-full mt-2 ${hasRequestBeenSent ? "btn-disabled" : "btn-primary"}`}
+          className={`btn w-full mt-2 ${hasRequestBeenSent ? "btn-disabled" : "btn-secondary"}`}
           onClick={() => onSendRequest(user._id)}
           disabled={hasRequestBeenSent || isPending}
         >

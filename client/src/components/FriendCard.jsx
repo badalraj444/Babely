@@ -13,21 +13,21 @@ const FriendCard = ({ friend }) => {
             onClick={() => setIsModalOpen(true)}>
             <img className="rounded-full hover:scale-110" src={friend.profilePic || "/user.png"} alt={friend.fullName} />
           </div>
-          <h3 className="font-semibold truncate">{friend.fullName}</h3>
+          <h3 className="font-semibold text-accent truncate">{friend.fullName}</h3>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-3">
-          <span className="badge badge-secondary text-xs">
+          <span className="badge badge-outline badge-secondary text-xs">
             {getLanguageFlag(friend.nativeLanguage)}
-            Native: {friend.nativeLanguage}
+            {friend.nativeLanguage}
           </span>
           <span className="badge badge-outline text-xs">
             {getLanguageFlag(friend.learningLanguage)}
-            Learning: {friend.learningLanguage}
+            {friend.learningLanguage}
           </span>
         </div>
 
-        <Link to={`/chat/${friend._id}`} className="btn btn-outline w-full">
+        <Link to={`/chat/${friend._id}`} className="btn btn-outline btn-accent w-full">
           Message
         </Link>
       </div>
