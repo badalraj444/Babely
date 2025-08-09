@@ -116,7 +116,7 @@ const AllChats = () => {
                 <Link
                   key={channel.id}
                   to={`/chat/${otherUser.id}`}
-                  className="flex items-center justify-between p-3 rounded-lg shadow transition"
+                  className="flex items-center  p-3 rounded-lg shadow transition"
                 >
                   <div className="flex items-center gap-3">
                     <img
@@ -132,9 +132,9 @@ const AllChats = () => {
                     </div>
                   </div>
                   {unreadCount > 0 && (
-                    <div className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {unreadCount}
-                    </div>
+<span className="badge badge-primary ml-2 translate-x-5 translate-y-0">
+                    {unreadCount}
+                  </span>
                   )}
                 </Link>
               );

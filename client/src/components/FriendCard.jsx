@@ -13,7 +13,7 @@ const FriendCard = ({ friend }) => {
             onClick={() => setIsModalOpen(true)}>
             <img className="rounded-full hover:scale-110" src={friend.profilePic || "/user.png"} alt={friend.fullName} />
           </div>
-          <h3 className="font-semibold text-accent truncate">{friend.fullName}</h3>
+          <h3 className="font-semibold  truncate">{friend.fullName}</h3>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -27,7 +27,7 @@ const FriendCard = ({ friend }) => {
           </span>
         </div>
 
-        <Link to={`/chat/${friend._id}`} className="btn btn-outline btn-accent w-full">
+        <Link to={`/chat/${friend._id}`} className="btn btn-outline w-full">
           Message
         </Link>
       </div>

@@ -19,12 +19,11 @@ Babely is a full‑stack language learning platform that connects users with nat
 ---
 
 ## Features
-
+- **Search Users**: Connect to language partners searching user names or langugae
 - **Language Partner Matching**: Automatically pair learners with native speakers based on selected target and native languages.  
 - **Personalized Learning Data**: Track each user’s language proficiency, learning goals, and progress to customize session topics.  
 - **Real‑time Chat & Video**: Practice speaking and writing in context, powered by Stream Chat and Stream Video React SDK.  
 - **Guided Onboarding**: Collect user details (native language, target language, proficiency level) to optimize matches.  
-- **32 UI Themes**: Personalize your experience with multiple theme options.  
 - **Protected Routes**: Ensure only authenticated users access learning sessions.  
 - **Custom Hooks & Components**: Reusable React hooks and a centralized API layer for rapid development.  
 
@@ -114,7 +113,7 @@ npm start --prefix backend
 
 1. **Sign Up / Login** – Register with email, password, native and target language details.  
 2. **Onboarding** – Complete your profile and set learning goals.  
-3. **Find Partners** – Browse or get matched with native speakers.  
+3. **Find Partners** – Search or Browse to get matched with native speakers.  
 4. **Practice Sessions** – Engage in paired video calls and chat focusing on your proficiency level.  
 5. **Progress Tracking** – Monitor your vocabulary, grammar, and conversation milestones.
 
@@ -147,9 +146,16 @@ Babely-main/
 ---
 
 ## Screenshots
-![home](home.png)
-![chats](chats.png)
-![settings](settings.png)
+Login page
+![login page](login.png)
+Home page
+![home page](home.png)
+Chats page
+![chats page](chats.png)
+Chat window
+![chat page](chat.png)
+Settings & Control
+![settings page](settings.png)
 
 ## Contributing
 

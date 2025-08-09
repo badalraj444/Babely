@@ -56,8 +56,8 @@ const HomePage = () => {
     <div className=" min-h-screen bg-base-100 p-4 sm:p-6 lg:p-8">
       <div className="container mx-auto space-y-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <Handshake size={40} className="text-accent"/>
-          <h2 className="text-2xl sm:text-3xl text-accent font-bold tracking-tight">Your Friends</h2>
+          <Handshake size={40} className=""/>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Your Friends</h2>
         </div>
 
         {loadingFriends ? (
@@ -79,8 +79,8 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <UserPlusIcon size={40} className="text-secondary"/>
-                  <h2 className="text-2xl sm:text-3xl text-secondary font-bold tracking-tight">Meet New Learners</h2>
+                  <UserPlusIcon size={40} className=" "/>
+                  <h2 className="text-2xl sm:text-3xl  font-bold tracking-tight">Meet New Learners</h2>
                 </div>
                 <p className="opacity-70">
                   Discover perfect language exchange partners based on your profile
@@ -117,7 +117,7 @@ const HomePage = () => {
                         </div>
 
                         <div>
-                          <h3 className="font-semibold text-secondary text-lg">{user.fullName}</h3>
+                          <h3 className="font-semibold text-lg">{user.fullName}</h3>
                           {user.location && (
                             <div className="flex items-center text-xs opacity-70 mt-1">
                               <MapPinIcon className="size-3 mr-1" />
@@ -143,7 +143,7 @@ const HomePage = () => {
 
                       {/* Action button */}
                       <button
-                        className={`btn btn-outline w-full mt-2 ${hasRequestBeenSent ? "btn-disabled" : "btn-secondary"
+                        className={`btn btn-outline w-full mt-2 ${hasRequestBeenSent ? "btn-disabled" : ""
                           } `}
                         onClick={() => sendRequestMutation(user._id)}
                         disabled={hasRequestBeenSent || isPending}
